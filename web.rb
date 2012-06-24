@@ -26,6 +26,26 @@ UA = [
   'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3 like Mac OS X; de-de) AppleWebKit/533.17.9 (KHTML, like Gecko) Mobile/8F190'
 ]
 
+PAGE_REFERERS = [
+  "https://twitter.com/kaeladan/status/216166384982437889",
+  "https://twitter.com/kaeladan/status/216166384982437889",
+  "https://twitter.com/kaeladan/status/216166384982437889",
+  "https://twitter.com/kaeladan/status/216166384982437889",
+  "https://twitter.com/kaeladan/status/216166384982437889",
+  "https://twitter.com/kaeladan/status/216166384982437889",
+  "https://twitter.com/kaeladan/status/216166384982437889",
+  "https://twitter.com/kaeladan/status/216166384982437889",
+  "https://twitter.com/kaeladan/status/216166384982437889",
+  "https://twitter.com/kaeladan/status/216166384982437889",
+  "https://twitter.com/kaeladan/status/216166384982437889",
+  "https://twitter.com/kaeladan/status/216166384982437889",
+  "https://twitter.com/kaeladan/status/216166384982437889",
+  "https://twitter.com/kaeladan/status/216166384982437889",
+  'https://www.facebook.com/kaeladan',
+  'https://www.facebook.com/kaeladan',
+  'https://www.facebook.com/kaeladan'
+]
+
 RATING = [
   '3',
   '3',
@@ -77,11 +97,10 @@ def vote(ua, rating)
   if $last_know_votes >= MAX_VOTES
     "#{MAX_VOTES} votes reached or exceeded (last known: #{$last_know_votes}), not voting"
   else
-    %x[curl -s --referer http://www.facebook.com/  --user-agent '#{ua}' #{REFERER}]
+    from_page = PAGE_REFERERS.sample
+    %x[curl -s --referer #{from_page}  --user-agent '#{ua}' #{REFERER}]
     sleepy_time = 3 + (13 * rand)
-    puts "Sleeping for #{sleepy_time}"
     sleep sleepy_time
-    puts "Voting!"
     %x[curl -s --referer #{REFERER}  --user-agent '#{ua}' --data '#{DATA}#{rating}' #{TARGET}]
   end
 end

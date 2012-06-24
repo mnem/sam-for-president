@@ -21,12 +21,15 @@ vote = (id) ->
   bot_index = Math.floor((BOTS.length - 1) * Math.random())
   bot = BOTS[bot_index]
   console.log "#{id} voting with #{bot}"
-  http.get url.parse(bot), (res) ->
-    response = "#{id} says: "
-    res.on 'data', (chunk) ->
-      response = response + chunk
-    res.on 'end', ->
-      console.log response
+  try
+    http.get url.parse(bot), (res) ->
+      response = "#{id} says: "
+      res.on 'data', (chunk) ->
+        response = response + chunk
+      res.on 'end', ->
+        console.log response
+  catch error
+    console.log "#{id} failed to vote", error
 
 scheduleVote = (id) ->
   time_to_vote = 60 * 1000 * Math.random()
