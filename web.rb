@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'nokogiri'
 
+$stdout.sync = true
+
 UA = [
   'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.14 (KHTML, like Gecko) Chrome/10.0.601.0 Safari/534.14',
   'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.20 (KHTML, like Gecko) Chrome/11.0.672.2 Safari/534.20',
@@ -72,7 +74,12 @@ RATING = [
 REFERER = 'http://www.takeyourdog.com/Gallery/photo-detail/2102/Boss-Dog'
 DATA = 'file_id=2102&rating='
 TARGET = 'http://www.takeyourdog.com/Gallery/filerating.php'
-MAX_VOTES = 17381
+if ENV['MAX_VOTES']
+  MAX_VOTES = Integer(ENV['MAX_VOTES'])
+else
+  MAX_VOTES = 21337
+end
+puts "Limiting votes to around #{MAX_VOTES}"
 $last_know_votes = 0
 
 def show_result(result)
