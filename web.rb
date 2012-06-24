@@ -49,10 +49,6 @@ PAGE_REFERERS = [
 ]
 
 RATING = [
-  '3',
-  '3',
-  '3',
-  '3',
   '4',
   '4',
   '4',
@@ -65,6 +61,7 @@ RATING = [
   '4',
   '4',
   '4',
+  '5',
   '5',
   '5',
   '5',
@@ -77,7 +74,7 @@ TARGET = 'http://www.takeyourdog.com/Gallery/filerating.php'
 if ENV['MAX_VOTES']
   MAX_VOTES = Integer(ENV['MAX_VOTES'])
 else
-  MAX_VOTES = 21337
+  MAX_VOTES = 22337
 end
 puts "Limiting votes to around #{MAX_VOTES}"
 $last_know_votes = 0
