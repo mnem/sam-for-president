@@ -77,6 +77,11 @@ def vote(ua, rating)
   if $last_know_votes >= MAX_VOTES
     "#{MAX_VOTES} votes reached or exceeded (last known: #{$last_know_votes}), not voting"
   else
+    %x[curl -s --referer http://www.facebook.com/  --user-agent '#{ua}' #{REFERER}]
+    sleepy_time = 3 + (13 * rand)
+    puts "Sleeping for #{sleepy_time}"
+    sleep sleepy_time
+    puts "Voting!"
     %x[curl -s --referer #{REFERER}  --user-agent '#{ua}' --data '#{DATA}#{rating}' #{TARGET}]
   end
 end
