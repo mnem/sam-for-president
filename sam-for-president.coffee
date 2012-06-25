@@ -52,7 +52,7 @@ start_votenet = (candidate, period, votes_per_period) ->
       , period * 1000
 
 # Sam http://www.takeyourdog.com/Gallery/photo-detail/2102
-start_votenet '2102', 60, 5
+start_votenet '2102', 600, 11
 # Simba http://www.takeyourdog.com/Gallery/photo-detail/2072
 start_votenet '2072', 60, 13
 # Beverly http://www.takeyourdog.com/Gallery/photo-detail/2078
