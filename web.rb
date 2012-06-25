@@ -107,7 +107,7 @@ def vote(id, ua, rating, referrer)
   # 'Visit' the voting page from somewhere
   %x[curl -s --referer #{referrer}  --user-agent '#{ua}' #{vote_page}]
   # Look at the page for a bit
-  sleepy_time = 3 + (13 * rand)
+  sleepy_time = 1 + (5 * rand)
   sleep sleepy_time
   # Hit the vote link
   %x[curl -s --referer #{vote_page}  --user-agent '#{ua}' --data 'file_id=#{id}&rating=#{rating}' #{VOTE_API}]
