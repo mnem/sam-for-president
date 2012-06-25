@@ -20,10 +20,9 @@ pick_bot = ->
   BOTS[bot_index]
 
 vote = (voter_id, candidate) ->
-  bot = pick_bot()
+  bot = "#{pick_bot()}#{candidate}"
   console.log "#{voter_id} voting with #{bot}"
-
-  http.get url.parse("bot#{candidate}"), (res) ->
+  http.get url.parse(bot), (res) ->
     response = "#{voter_id} says: "
     res.on 'data', (chunk) ->
       response = response + chunk
@@ -54,3 +53,23 @@ start_votenet = (candidate, period, votes_per_period) ->
 
 # Sam
 start_votenet '2102', 60, 5
+# Simba
+start_votenet '2072', 60, 13
+# Beverly
+start_votenet '2078', 60, 1
+# Bauer
+start_votenet '2031', 60, 13
+# Timmy
+start_votenet '2075', 60, 13
+# Max Aus Ulm
+start_votenet '2079', 60, 17
+# Dixie Bug
+start_votenet '2034', 60, 13
+# Brulee
+start_votenet '2200', 60, 13
+# Chyna & Sabra
+start_votenet '2042', 60, 13
+# Abbey
+start_votenet '2024', 60, 13
+# Ginger and Jeb
+start_votenet '2041', 60, 13

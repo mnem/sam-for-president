@@ -119,11 +119,17 @@ get '/' do
   "Hello, world"
 end
 
+SAM_ID = '2102'
+
 get '/vote-sam' do
-  show_result vote '2102', UA.sample, RATING.sample, SAM_REFERERS.sample
+  show_result vote SAM_ID, UA.sample, RATING.sample, SAM_REFERERS.sample
 end
 
 get '/vote/:id' do |id|
-  show_result vote id, UA.sample, RATING.sample, PAGE_REFERERS.sample
+  if id == SAM_ID
+    referrer = SAM_REFERERS.sample
+  else
+    referrer = PAGE_REFERERS.sample
+  end
+  show_result vote id, UA.sample, RATING.sample, referrer
 end
-
