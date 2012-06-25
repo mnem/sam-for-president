@@ -3,6 +3,7 @@ GEM
   specs:
     daemons (1.1.8)
     eventmachine (0.12.10)
+    newrelic_rpm (3.4.0)
     nokogiri (1.5.5)
     rack (1.4.1)
     sinatra (1.1.0)
@@ -18,6 +19,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  newrelic_rpm
   nokogiri (= 1.5.5)
   sinatra (= 1.1.0)
   thin

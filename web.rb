@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'nokogiri'
+require 'newrelic_rpm'
 
 $stdout.sync = true
 
