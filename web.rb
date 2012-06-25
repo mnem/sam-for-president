@@ -28,7 +28,7 @@ UA = [
   'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3 like Mac OS X; de-de) AppleWebKit/533.17.9 (KHTML, like Gecko) Mobile/8F190'
 ]
 
-PAGE_REFERERS = [
+SAM_REFERERS = [
   "https://twitter.com/kaeladan/status/216166384982437889",
   "https://twitter.com/kaeladan/status/216166384982437889",
   "https://twitter.com/kaeladan/status/216166384982437889",
@@ -46,6 +46,19 @@ PAGE_REFERERS = [
   'https://www.facebook.com/kaeladan',
   'https://www.facebook.com/kaeladan',
   'https://www.facebook.com/kaeladan'
+]
+
+PAGE_REFERERS = [
+  "https://twitter.com/",
+  "https://twitter.com/",
+  "https://twitter.com/",
+  "https://twitter.com/",
+  "https://twitter.com/",
+  "https://twitter.com/",
+  "https://twitter.com/",
+  "https://twitter.com/",
+  'https://www.facebook.com/',
+  'https://www.facebook.com/'
 ]
 
 RATING = [
@@ -68,16 +81,8 @@ RATING = [
   '5'
 ]
 
-REFERER = 'http://www.takeyourdog.com/Gallery/photo-detail/2102/Boss-Dog'
-DATA = 'file_id=2102&rating='
-TARGET = 'http://www.takeyourdog.com/Gallery/filerating.php'
-if ENV['MAX_VOTES']
-  MAX_VOTES = Integer(ENV['MAX_VOTES'])
-else
-  MAX_VOTES = 22337
-end
-puts "Limiting votes to around #{MAX_VOTES}"
-$last_know_votes = 0
+VOTE_PAGE = 'http://www.takeyourdog.com/Gallery/photo-detail/'
+VOTE_API = 'http://www.takeyourdog.com/Gallery/filerating.php'
 
 def show_result(result)
   begin
@@ -97,22 +102,28 @@ def show_result(result)
   end
 end
 
-def vote(ua, rating)
-  if $last_know_votes >= MAX_VOTES
-    "#{MAX_VOTES} votes reached or exceeded (last known: #{$last_know_votes}), not voting"
-  else
-    from_page = PAGE_REFERERS.sample
-    %x[curl -s --referer #{from_page}  --user-agent '#{ua}' #{REFERER}]
-    sleepy_time = 3 + (13 * rand)
-    sleep sleepy_time
-    %x[curl -s --referer #{REFERER}  --user-agent '#{ua}' --data '#{DATA}#{rating}' #{TARGET}]
-  end
+def vote(id, ua, rating, referrer)
+  vote_page = "#{VOTE_PAGE}#{id}"
+  # 'Visit' the voting page from somewhere
+  %x[curl -s --referer #{referrer}  --user-agent '#{ua}' #{vote_page}]
+  # Look at the page for a bit
+  sleepy_time = 3 + (13 * rand)
+  sleep sleepy_time
+  # Hit the vote link
+  %x[curl -s --referer #{vote_page}  --user-agent '#{ua}' --data 'file_id=#{id}&rating=#{rating}' #{VOTE_API}]
 end
 
+##############################################################################
+# Routes
 get '/' do
   "Hello, world"
 end
 
 get '/vote-sam' do
-  show_result vote UA.sample, RATING.sample
+  show_result vote '2102', UA.sample, RATING.sample, SAM_REFERERS.sample
 end
+
+get '/vote/:id' do |id|
+  show_result vote id, UA.sample, RATING.sample, PAGE_REFERERS.sample
+end
+
