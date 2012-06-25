@@ -51,25 +51,25 @@ start_votenet = (candidate, period, votes_per_period) ->
         scheduleVote "Voter #{i} for #{candidate}", candidate, period
       , period * 1000
 
-# Sam http://www.takeyourdog.com/Gallery/photo-detail/2102
-start_votenet '2102', 60, 7
-# Simba http://www.takeyourdog.com/Gallery/photo-detail/2072
-start_votenet '2072', 60, 13
-# Beverly http://www.takeyourdog.com/Gallery/photo-detail/2078
-start_votenet '2078', 60, 5
-# Bauer http://www.takeyourdog.com/Gallery/photo-detail/2031
-start_votenet '2031', 60, 13
-# Timmy http://www.takeyourdog.com/Gallery/photo-detail/2075
-start_votenet '2075', 60, 13
 # Max Aus Ulm http://www.takeyourdog.com/Gallery/photo-detail/2079
-start_votenet '2079', 60, 17
-# Dixie Bug http://www.takeyourdog.com/Gallery/photo-detail/2034
-start_votenet '2034', 60, 13
-# Brulee http://www.takeyourdog.com/Gallery/photo-detail/2200
-start_votenet '2200', 60, 13
-# Chyna & Sabra http://www.takeyourdog.com/Gallery/photo-detail/2042
-start_votenet '2042', 60, 13
-# Abbey http://www.takeyourdog.com/Gallery/photo-detail/2024
-start_votenet '2024', 60, 13
+start_votenet '2079', 600, 12
+# Sam http://www.takeyourdog.com/Gallery/photo-detail/2102
+start_votenet '2102', 1800, 11
+# Beverly http://www.takeyourdog.com/Gallery/photo-detail/2078
+start_votenet '2078', 600, 10
+# Simba http://www.takeyourdog.com/Gallery/photo-detail/2072
+start_votenet '2072', 600, 9
 # Ginger and Jeb http://www.takeyourdog.com/Gallery/photo-detail/2041
-start_votenet '2041', 60, 13
+start_votenet '2041', 600, 8
+# Bauer http://www.takeyourdog.com/Gallery/photo-detail/2031
+start_votenet '2031', 600, 7
+# Timmy http://www.takeyourdog.com/Gallery/photo-detail/2075
+start_votenet '2075', 600, 6
+# Dixie Bug http://www.takeyourdog.com/Gallery/photo-detail/2034
+start_votenet '2034', 600, 5
+# Brulee http://www.takeyourdog.com/Gallery/photo-detail/2200
+start_votenet '2200', 600, 4
+# Chyna & Sabra http://www.takeyourdog.com/Gallery/photo-detail/2042
+start_votenet '2042', 600, 3
+# Abbey http://www.takeyourdog.com/Gallery/photo-detail/2024
+start_votenet '2024', 600, 2
